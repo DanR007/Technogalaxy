@@ -31,6 +31,9 @@ ABruCharacter::ABruCharacter()
 	SideViewCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	SideViewCameraComponent->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
+	ColliderOfObject = CreateDefaultSubobject<USphereComponent>(TEXT("ColliderComponent"));
+	ColliderOfObject->SetupAttachment(RootComponent);
+
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
