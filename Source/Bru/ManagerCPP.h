@@ -29,9 +29,12 @@ protected:
 	void FillArr();
 
 	TSubclassOf<AActor> enemyShuttle;
+	TSubclassOf<AActor> asteroid;
 	TSubclassOf<AActor> Updates;
 	
-
+	float speed = 1.f;
+	float speedRel = 5;
+	int HP = 10;
 	
 public:	
 	// Called every frame
@@ -46,12 +49,15 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 		bool GameOver;
 	UPROPERTY(BlueprintReadOnly)
-		int levelMultiplier = 1;
+		int levelMultiplier;
 	UPROPERTY(BlueprintReadOnly)
 		int levelCount = 1;
+	UPROPERTY(BlueprintReadOnly)
+		int maxPower = 4;
+	
 
 	UFUNCTION(BlueprintCallable)
-		void AddScore() { score++; }
+		void AddScore(int f_score) { score+= f_score; }
 	UFUNCTION(BlueprintCallable)
 		void SetGameOver(bool isGameOver);
 	UFUNCTION(BlueprintCallable)
@@ -60,4 +66,5 @@ public:
 	levelMultiplier = UKismetMathLibrary::Clamp(levelMultiplier, 1, PointOfSpawn.Num() - 5);
 	}
 	
+
 };
